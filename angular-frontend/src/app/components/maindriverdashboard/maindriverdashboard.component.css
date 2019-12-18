@@ -1,0 +1,36 @@
+#cancelbutton{
+  text-align: center;
+  margin-top: 5%;
+  display: table;
+  margin: 0 auto !important;
+}
+#maincard{
+  margin: 0 auto !important;
+  width: 60%;
+  height: 350px;
+  /*padding-top: 10px;*/
+  min-width: 400px;
+  min-height: 450px;
+  /*margin-top: 5% !important;*/
+
+}
+#mainhead{
+  text-align: center;
+}
+#buttongrp{
+  min-width: 200px;
+}
+#secondhead{
+  text-align: center;
+}
+#ordertable{
+  text-align: center;
+  width: 80%;
+  margin: 0 auto !important;
+
+}
+#myclass{
+  text-align: center;
+  width:67% !important;
+  margin: 0 auto !important;
+}

@@ -1,0 +1,26 @@
+
+<h3>Reasons</h3>
+<div class="card1"><mat-card>
+  <mat-card-header>
+    <mat-card-title></mat-card-title>
+    <mat-form-field class="drop1" style="position: relative;right: 15px;">
+      <mat-label  >Select Reason</mat-label>
+      <mat-select [(value)]="selected">
+
+        <mat-option value="Medical Emergency">Medical Emergengy</mat-option>
+        <mat-option value="Met with an accident">Met with an accident</mat-option>
+        <mat-option value="Stuck in Traffic">Stuck in Traffic</mat-option>
+        <mat-option value="Reason Not Listed">Reason Not Listed</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!--    <p>You selected: {{selected}}</p>-->
+</mat-card-header>
+ <div class="reasons" style="text-align: center;padding: 5px;">
+      <textarea style="width: 80%;" id="comments" placeholder="Tell us more..." class="common"></textarea>
+    </div>
+
+  
+  <button mat-stroked-button class="submitbutton"(click)="submit()">Submit</button>
+</mat-card>
+</div>

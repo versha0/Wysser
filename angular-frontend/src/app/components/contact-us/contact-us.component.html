@@ -1,0 +1,76 @@
+<br>
+<br>
+    <section class="Material-contact-section section-padding section-dark">
+      <div class="container">
+          <div class="row">
+              <!-- Section Titile -->
+              <div class="col-md-12">
+                  <h1 class="section-title">Love to Hear From You</h1>
+              </div>
+          </div>
+          <div class="row">
+              <!-- Section Titile -->
+              <div class="col-md-6 mt-3" >
+                <p style="margin: auto;text-align: justify;">We here at Wysser believe that best business model is developed when there is a proper
+                  interaction between the customers and the service providers. So if you feel a need some help to understand our platform,
+                  want to give us a feedback or suggest us some new features, Feel free to contact us any time, We are
+                  open 24 X 7, and our customer service responds within the shortest time possible.
+                </p>
+                <div>
+                        <i class="fa fa-globe mr-3"></i>  <a href="#">Wysser</a>
+                </div>
+                <div>
+                    <i class="fa fa-map-marker mr-3"></i><a href="https://goo.gl/maps/PmUA8r8zvVCWSbJs8">38, 4th B Cross Rd, Koramangala 5th Block, Koramangala Industrial
+                    Layout, Near JNC College Rd, Bengaluru, Karnataka 560095</a>
+                </div>
+                <div>
+                  <p><i class="fa fa-phone mr-3"></i>(+91) 123-4567</p>
+                </div>
+                <div>
+                 <p><i class="fa fa-envelope-o mr-3"></i><a href="mailto:wysserrouting@gmail.com?Subject=Hello%20Wysser">wysserrouting@gmail.com</a></p>
+                </div>
+                <br>
+                <div class="float-right" data-aos="fade-right">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7777.234226951731!2d77.61902443760094!3d12.932312784437418!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3c632a2e17aea311!2sNIIT%20-%20Koramangala%20-%20StackRoute!5e0!3m2!1sen!2sin!4v1575626246957!5m2!1sen!2sin"
+                     width="540" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                <hr>
+                </div>
+              </div>
+              <!-- contact form -->
+              <div data-aos="flip-down" class="col-md-6 ">
+                  <form class="shake" role="form" method="post" id="contactForm" name="contact-form" data-toggle="validator">
+                      <!-- Name -->
+                      <div class="form-group label-floating">
+                        <label class="control-label" for="name">Name</label>
+                        <input class="form-control" id="name" type="text" name="name" required data-error="Please enter your name" [(ngModel)]="name">
+                        <div class="help-block with-errors"></div>
+                      </div>
+                      <!-- email -->
+                      <div class="form-group label-floating">
+                        <label class="control-label" for="email">Email</label>
+                        <input class="form-control" id="email" type="email" name="email" required data-error="Please enter your Email" [(ngModel)]="email">
+                        <div class="help-block with-errors"></div>
+                      </div>
+                      <!-- Subject -->
+                      <div class="form-group label-floating">
+                        <label class="control-label">Subject</label>
+                        <input class="form-control" id="msg_subject" type="text" name="subject" required data-error="Please enter your message subject" [(ngModel)]="subject">
+                        <div class="help-block with-errors"></div>
+                      </div>
+                      <!-- Message -->
+                      <div class="form-group label-floating">
+                          <label for="message" class="control-label">Message</label>
+                          <textarea class="form-control" rows="3" id="message" name="message" required data-error="Write your message" [(ngModel)]="message"></textarea>
+                          <div class="help-block with-errors"></div>
+                      </div>
+                      <!-- Form Submit -->
+                      <div class="form-submit mt-5">
+                          <button class="btn btn-outline-danger" type="submit" id="form-submit" (click)="sendandsave()"><i class="material-icons mdi mdi-message-outline"></i> Send Message</button>
+                          <div id="msgSubmit" class="h3 text-center hidden"></div>
+                          <div class="clearfix"></div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </section>

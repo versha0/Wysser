@@ -1,0 +1,248 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer mode="side">
+        <mat-nav-list>
+            <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Home</a> -->
+            <!-- <a mat-list-item [routerLink]="'/profile'"> Profile </a> -->
+            <a mat-list-item [routerLink]="'/vehicle-management'"> Dash Board </a>
+            <a mat-list-item [routerLink]="'/manage-vehicle'"> Manage-vehicle </a>
+            <a mat-list-item [routerLink]="'/editVehicleCompanyProfile'"> Profile </a>
+            <a mat-list-item [routerLink]="'/driver-password'"> Driver Password </a>
+            <a mat-list-item [routerLink]="'/vehicle-history'"> History </a>
+        </mat-nav-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+      <img class="vehicle" src="../../assets/Vehicle.gif" alt="Menu">
+    </button>
+        <!-- <app-requests></app-requests> -->
+
+
+
+
+
+        <div class="container">
+            <div class="col-md-12">
+                <h1>Total Vehicle List</h1>
+
+                <!-- <h2>{{date | date}}</h2> -->
+
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerm" style="width: 30%;">
+
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <!-- <th class="text-center">Date</th> -->
+                            <th class="text-center">Slot1</th>
+                            <th class="text-center">Slot2</th>
+                            <th class="text-center">Slot3</th>
+                            <th class="text-center">Vehicle Number</th>
+                            <th class="text-center">Driver Name</th>
+                            <th class="text-center">Vehicle Type</th>
+                            <th class="text-center">Capacity(lit)</th>
+                            <th class="text-center">Cost Per Slot(Rs)</th>
+                            <th class="text-center">Vehicle Status</th>
+                            <th class="text-center">Company Name</th>
+                            <th class="text-center">Edit/Delete</th>
+                            <!-- <th class="text-center">&nbsp;</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let vehicle of filteredData">
+                            <td>{{ vehicle.id }}</td>
+                            <!-- <td>{{vehicle.date}}</td> -->
+                            <td [ngStyle]="{'color':vehicle.slot1 === 'Available' ? 'green' : 'red' }">{{vehicle.slot1}}</td>
+                            <td [ngStyle]="{'color':vehicle.slot2 === 'Available' ? 'green' : 'red' }">{{vehicle.slot2}}</td>
+                            <td [ngStyle]="{'color':vehicle.slot3 === 'Available' ? 'green' : 'red' }">{{vehicle.slot3}}</td>
+                            <td>{{ vehicle.vehicleNumber }}</td>
+                            <td>{{ vehicle.driverName }}</td>
+                            <td>{{ vehicle.vehicleType }}</td>
+                            <td>{{ vehicle.capacity }}</td>
+                            <td>{{ vehicle.costPerSlot }}</td>
+                            <td [ngStyle]="{'color':vehicle.vehicleStatus === 'Good Condition' ? 'green' : 'red' }">{{ vehicle.vehicleStatus }}</td>
+                            <td>{{vehicle.companyName }}</td>
+
+                            <td>
+                                <button class="btn btn-info mr-2" (click)="showEditVehicleForm(vehicle)">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-danger" (click)="removeVehicle(vehicle)">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="btn btn-success" (click)="showAddVehicleForm()"><i class="fa fa-plus"></i></button>
+                <br />
+                <br />
+
+
+                <form *ngIf="vehicleForm" style="width: 50%" class="ml-auto mr-auto">
+                    <h2>Add New Vehicle</h2>
+                    <div class="form-group">
+
+                        <label class="form-label" for="">Enter Vehicle ID:</label>
+                        <input type="number" placeholder="integer value" name="id" id="id" [(ngModel)]="newVehicle.id" class="form-control" />
+
+                        <!-- 
+                        <label class="form-label" for="">Enter Date:</label>
+                        <input type="datetime-local" name="date" id="date" [(ngModel)]="newVehicle.date" [ngModel]="filterDateFrom | date:'yyyy-MM-ddTHH:mm'" (ngModelChange)="filterDateFrom = dateChanged($event)" class="form-control" /> -->
+
+
+                        <!-- <label class="form-label" for="">Enter Date:</label>
+        
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" placeholder="Pick a Date" name="date" id="date" [(ngModel)]="newVehicle.date" maxlength="10" class="form-control">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field> -->
+
+                        <!-- <br>
+                        <label class="form-label" for="">Enter Slot:</label>
+                        <select name="slot" id="slot" [(ngModel)]="newVehicle.slot" class="form-control">
+                            <option value="slot1">slot1</option>
+                            <option value="slot2">slot2</option>
+                            <option value="slot3">slot3</option>
+                        </select> -->
+
+                        <label class="form-label" for="">Enter Vehicle Number:</label>
+                        <input type="text" name="vehicleNumber" id="vehicleNumber" [(ngModel)]="newVehicle.vehicleNumber" class="form-control">
+                        <label class="form-label" for="">Enter Driver Name:</label>
+                        <input type="text" name="driverName" id="driverName" [(ngModel)]="newVehicle.driverName" class="form-control" />
+
+                        <!-- <label class="form-label" for="">Enter Vehicle Type:</label>
+                        <input type="text" name="vehicleType" id="vehicleType" [(ngModel)]="newVehicle.vehicleType" class="form-control" /> -->
+
+                        <label class="form-label" for="">Enter Vehicle Type:</label>
+                        <select name="vehicleType" id="vehicleType" [(ngModel)]="newVehicle.vehicleType" class="form-control">
+                            <option value="bike">bike</option>
+                            <option value="car">car</option>
+                            <option value="truck">truck</option>
+                            <option value="van">van</option>
+                            
+                            <!-- <option selected value="Under Maintenance">Under Maintenance</option> -->
+                        </select>
+
+
+                        <!-- <label class="form-label" for="">Enter Vehicle Capacity:</label>
+                        <input type="number" placeholder="integer value in lit" name="capacity" id="capacity" [(ngModel)]="newVehicle.capacity" class="form-control" /> -->
+
+                        <label class="form-label" for="">Enter Vehicle Capacity:</label>
+                        <select name="capacity" id="capacity" [(ngModel)]="newVehicle.capacity" class="form-control">
+                            <option value="50">50 lit</option>
+                            <option value="100">100 lit</option>
+                            <option value="200">200 lit</option>
+                            <option value="500">500 lit</option>
+                        
+                        </select>
+
+                        <label class="form-label" for="">Enter Vehicle Cost Per Slot:</label>
+                        <input type="number" placeholder="integer value in Rs" name="costPerSlot" id="costPerSlot" [(ngModel)]="newVehicle.costPerSlot" class="form-control" />
+
+                        <label class="form-label" for="">Enter Vehicle Status:</label>
+                        <select name="vehicleStatus" id="vehicleStatus" [(ngModel)]="newVehicle.vehicleStatus" class="form-control">
+                            <option value="Good Condition">Good Condition</option>
+                            <option selected value="Under Maintenance">Under Maintenance</option>
+                        </select>
+
+
+
+
+                    </div>
+
+                    <p>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="saveVehicle(newVehicle)">Submit</button>
+                        <button type="button" class="btn btn-warning" (click)="cancelNewVehicle()">Cancel</button>
+                    </p>
+                </form>
+
+                <form *ngIf="editVehicleForm" style="width: 50%" class="ml-auto mr-auto">
+                    <h2>Edit Vehicle Details</h2>
+
+                    <div class="form-group">
+
+
+                        <label class="form-label" for="">Enter Vehicle ID:</label>
+                        <input type="number" placeholder="integer value" name="id" id="id" [(ngModel)]="editedVehicle.id" class="form-control" />
+
+                        <!-- <label class="form-label" for="">Enter Date:</label>
+        
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker3" placeholder="Pick a Date" name="date" id="date" [(ngModel)]="editedVehicle.date" maxlength="10" class="form-control">
+                            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                            <mat-datepicker #picker3></mat-datepicker>
+                        </mat-form-field>
+        
+                        <br> -->
+                        <!-- 
+                        <label class="form-label" for="">Enter Slot:</label>
+                        <select name="slot" id="slot" [(ngModel)]="editedVehicle.slot" class="form-control">
+                            <option value="slot1">slot1</option>
+                            <option value="slot2">slot2</option>
+                            <option value="slot3">slot3</option>
+                        </select> -->
+
+                        <label class="form-label" for="">Enter Vehicle Number:</label>
+                        <input type="text" name="vehicleNumber" id="vehicleNumber" [(ngModel)]="editedVehicle.vehicleNumber" class="form-control" />
+                        <label class="form-label" for="">Enter Driver Name:</label>
+                        <input type="text" name="driverName" id="driverName" [(ngModel)]="editedVehicle.driverName" class="form-control" />
+
+                        <!-- <label class="form-label" for="">Enter Vehicle Type:</label>
+                        <input type="text" name="vehicleType" id="vehicleType" [(ngModel)]="editedVehicle.vehicleType" class="form-control" /> -->
+
+                        <label class="form-label" for="">Enter Vehicle Type:</label>
+                        <select name="vehicleType" id="vehicleType" [(ngModel)]="editedVehicle.vehicleType" class="form-control">
+                            <option value="bike">bike</option>
+                            <option value="car">car</option>
+                            <option value="truck">truck</option>
+                            <option value="van">van</option>
+                            
+                            <!-- <option selected value="Under Maintenance">Under Maintenance</option> -->
+                        </select>
+
+                        <!-- <label class="form-label" for="">Enter Vehicle Capacity:</label>
+                        <input type="number" placeholder="integer value" name="capacity" id="capacity" [(ngModel)]="editedVehicle.capacity" class="form-control" /> -->
+
+                        <label class="form-label" for="">Enter Vehicle Capacity:</label>
+                        <select name="capacity" id="capacity" [(ngModel)]="editedVehicle.capacity" class="form-control">
+                            <option value="50">50 lit</option>
+                            <option value="100">100 lit</option>
+                            <option value="200">200 lit</option>
+                            <option value="500">500 lit</option>
+                        
+                        </select>
+
+                        <label class="form-label" for="">Enter Vehicle Cost Per Slot:</label>
+                        <input type="number" placeholder="integer value" name="costPerSlot" id="costPerSlot" [(ngModel)]="editedVehicle.costPerSlot" class="form-control" />
+
+                        <label class="form-label" for="">Enter Vehicle Status:</label>
+                        <select name="vehicleStatus" id="vehicleStatus" [(ngModel)]="editedVehicle.vehicleStatus" class="form-control">
+                            <option value="Good Condition">Good Condition</option>
+                            <option value="Under Maintenance">Under Maintenance</option>
+                        </select>
+
+                    </div>
+                    <p>
+                        <button type="button" class="btn btn-primary mr-2" (click)="updateVehicle(editedVehicle)">Submit</button>
+                        <button type="button" class="btn btn-warning" (click)="cancelEdits()">Cancel</button>
+                    </p>
+                </form>
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+</mat-drawer-container>

@@ -1,0 +1,168 @@
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td,
+  th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+
+<div class="container containerTop">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link" id="home-tab" routerLink="../user" role="tab" aria-controls="dashboard"
+        aria-selected="true">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" id="vehicle-tab" routerLink="../retailerVehicleDemand" role="tab"
+        aria-controls="vehicles" aria-selected="false">Rent Vehicles</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="order-tab" routerLink="../addOrder" role="tab" aria-controls="orders"
+        aria-selected="false">Add Order</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="viewProfile-tab" routerLink="../viewProfile" role="tab" aria-controls="details"
+        aria-selected="false">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="viewPendingVehicleRequest" routerLink="../viewPendingVehicleRequest" role="tab"
+        aria-controls="details" aria-selected="false">Pending Request</a>
+    </li>
+  </ul>
+</div>
+
+
+<div *ngIf="isRequestSent" class="alert alert-success" role="alert">
+  Your Request has been Sent to Vehicle Company, You will get updated on registered email.
+</div>
+
+<div class="tophead">
+  <h3> Vehicles Available Tomorrow</h3>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+  <div class="col-md-12">
+    <div class="row" style="display:flex">
+
+
+
+
+
+
+      <div *ngIf="success" class="alert alert-primary" role="alert">
+        This is a primary alert—check it out!
+      </div>
+      <!--    <div class="date">-->
+      <!-- <mat-form-field>
+        <mat-label>Volume of Vehicle</mat-label>
+        <mat-select [(value)]="volume">
+            <mat-option value="500">500</mat-option>
+            <mat-option value="400">400</mat-option>
+            <mat-option value="200">200</mat-option>
+            <mat-option value="100">100</mat-option>
+        </mat-select>
+    </mat-form-field> -->
+
+    <!--  <div class="twoelements">-->
+    <!--    <p style="color: #336B6B">Don't Know the rates?</p>-->
+    <!--    <button  id="ratebutton" mat-stroked-button (click)="openDialog()">Rate Cart</button>-->
+    <!--  </div>-->
+    <!-- <p>You selected: {{volume}}</p> -->
+
+
+    <!--      <span date="MM/dd/yyyy"></span>-->
+    <!--    <div class="currentdate col-sm-4">-->
+    <!--     <p> Date: {{date | date:'yyyy-MM-dd'}}</p>-->
+    <!--    </div>-->
+    <!--        <p>You selected {{date}}</p>-->
+<!--    <div class="col-sm-4">-->
+<!--      <form class="example-form">-->
+<!--        <mat-form-field class="example-full-width">-->
+<!--          <input [(ngModel)]="capacity" matInput placeholder="Enter Volume" [ngModelOptions]="{standalone: true}">-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+<!--    </div>-->
+    <div class="slot col-sm-4 col-12">
+      <mat-form-field>
+        <mat-label>Select Vehicle Type</mat-label>
+        <mat-select [(ngModel)]="capacity">
+          <mat-option value="50">Bike (max capacity 50L)</mat-option>
+          <mat-option value="100">Mini Van (max capacity 100L)</mat-option>
+          <mat-option value="200">Mini Truck (max capacity 200L)</mat-option>
+          <mat-option value="500">Truck (max capacity 500L)</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- <p>You selected: {{slot}}</p> -->
+    </div>
+    <div class="slot col-sm-4 col-12">
+      <mat-form-field>
+        <mat-label>Time Slot</mat-label>
+        <mat-select [(ngModel)]="slot">
+          <mat-option value="slot1">11:00-14:00</mat-option>
+          <mat-option value="slot2">15:00-18:00</mat-option>
+          <mat-option value="slot3">19:00-22:00</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- <p>You selected: {{slot}}</p> -->
+
+
+      <!-- <bu)tton mat-stroked-button (click)="sendRequest()" class="requestbutton">Request Vehicle</button> -->
+    </div>
+
+
+    <div>
+      <button mat-stroked-button (click)="sendrequest()">Search</button>
+    </div>
+  </div>
+</div>
+<!-- <ng-template *ngIf="flag"> -->
+<div class="container">
+  <div class="tableofoptions">
+
+    <div class="table-responsive text-nowrap">
+
+      <table class="table" id="ordertable">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Vehicle Number</th>
+            <th scope="col">Type</th>
+            <th scope="col">Cost(Per Slot)</th>
+            <th scope="col">Company Name</th>
+            <th scope="col">Book</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of vehiclequery">
+
+            <td>{{data.id}}</td>
+            <td>{{data.vehicleNumber}}</td>
+            <td>{{data.vehicleType}}</td>
+            <td>{{data.costPerSlot}}</td>
+            <td>{{data.companyName}}</td>
+            <td><button mat-stroked-button (click)="demandrow(data)">Book</button></td>
+
+
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+<!-- </ng-template> -->

@@ -1,0 +1,28 @@
+<div class="fullScreen">
+  <div data-aos="zoom-out"class="Text-container container">
+    <br><br>
+    <p>Get Started</p>
+    <h3>Sign in to Wysser</h3>
+    <mat-form-field style="padding: 5px;">
+      <input #email matInput placeholder="Email" required>
+    </mat-form-field>
+
+    <mat-form-field style="padding: 5px;">
+      <input #password matInput placeholder="Password" required type="password">
+    </mat-form-field>
+    <a routerLink="/resetPassword" ><p class="text-center" style="font-size: smaller;">Forgot Password?</p></a>
+    
+    
+    <button style="width: 50%;margin: auto;" class="btn btn-outline-danger check"
+            (click)="validateLogin(email.value,password.value)" routerLink="/login"><b> Sign in </b>
+    </button>
+
+    <hr>
+ 
+    <p >New to us, <a (click)="validateLogin(email.value,password.value)" routerLink="/signup">Register</a>
+    </p>
+    <br>
+        <p style="color: brown;"> {{loginMessage}} </p>
+        
+  </div>
+</div>

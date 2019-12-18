@@ -1,0 +1,19 @@
+.nav-link {
+    color: rgb(43, 40, 40);
+    /* padding: 12px 0; */
+    border-bottom: transparent;
+}
+
+.nav-link:hover {
+    color: rgb(43, 40, 40);
+}
+
+.containerTop {
+    width: 80%;
+    margin-top: 40px;
+    /* margin-bottom: 5px; */
+  }
+
+  .container {
+    width: 80%;
+  }

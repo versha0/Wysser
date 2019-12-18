@@ -1,0 +1,238 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    container_name: mongo-container
+    network_mode: host
+    restart: always
+    volumes:
+      - /db-data:/var/lib/mongodb
+  neo4j:
+    image: neo4j:latest
+    container_name: neo4j
+    ports:
+      - '7474:8484'
+      - '7687:7687'
+    environment:
+      - NEO4J_AUTH=neo4j/12345
+    network_mode: host
+    volumes:
+      #- /DB:/var/lib/neo4j
+      - /plugins:/plugins
+      - /data:/data
+      - /import:/import
+    restart: always  
+  mysql1:
+    image: mysql:5.7
+    container_name: mysql
+    network_mode: host
+    hostname: localhost
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      #     MYSQL_DATABASE: testDB
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: Root@123
+    entrypoint:
+      sh -c "
+      echo 'CREATE DATABASE IF NOT EXISTS register_db;CREATE DATABASE IF NOT EXISTS Retailers;CREATE DATABASE IF NOT EXISTS test;CREATE DATABASE IF NOT EXISTS profile_db;' > /docker-entrypoint-initdb.d/init.sql;
+      /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "
+    volumes:
+      - /db-data:/var/lib/mysql
+
+  #  services.....
+  
+  #  eureka:
+  #      image: eureka
+  #      restart: always
+  #      build: eureka-service/
+  #      container_name: eureka-container
+  #      network_mode: host
+  #      ports:
+  #        - "8762:8762"
+  #      expose:
+  #        - 8762
+  #  configserver:
+  #      image: configserver
+  #      restart: always
+  #      build: config-service/
+  #      container_name: configserver-container
+  #      network_mode: host
+  #      ports:
+  #        - "8889:8889"
+  #      expose:
+  #        - 8889
+  zuul:
+    image: zuul
+    restart: always
+    build: zuul-service/
+    container_name: zuul-container
+    network_mode: host
+    ports:
+      - 8080:8080
+    expose:
+      - 8080
+  authentication-service:
+    image: authentication
+    build: login-authentication-service/
+    restart: always
+    network_mode: host
+    container_name: authentication
+    depends_on:
+      - mysql1
+    ports:
+      - 9091:9091
+    # expose:
+    #   - 9091
+    restart: always  
+  order-service:
+    image: order-service
+    build: order-service/
+    restart: always
+    network_mode: host
+    container_name: order-serv
+    depends_on:
+      - neo4j
+    ports:
+      - 8084:8084
+      - 7687:7687
+    # expose:
+    #   - 7687
+    #   - 8084
+    restart: always  
+  angular-frontend:
+    image: angular-frontend
+    build: angular-frontend/
+    hostname: localhost
+    container_name: angular-container
+    network_mode: 'host'
+    #     build: .
+    ports:
+      - 4200:4200
+    restart: always  
+  driver-dashboard-service:
+    image: driver-dashboard-service
+    build: driver-dashboard-service/
+    restart: always
+    network_mode: host
+    container_name: driver-dashboard
+    ports:
+      - "8086:8086"
+  route-optimizer:
+    image: route-optimizer
+    build: route-optimizer-service/
+    restart: always
+    network_mode: host
+    container_name: route-cont
+    depends_on:
+      - mongodb
+      - kafka
+    ports:
+      - "8091:8091"
+  retailer-profile-service:
+    image: retailer-profile-service
+    build: retailer-profile-service/
+    restart: always
+    network_mode: host
+    container_name: retailer-profile
+    depends_on:
+      - mysql1
+    ports:
+      - "8082:8082"
+  registration-service:
+    image: registration-service
+    build: registration-varification-service/
+    restart: always
+    network_mode: host
+    depends_on:
+      - mysql1
+    container_name: retailer-registration
+    ports:
+      - "8088:8088"
+  vehicledemand:
+    image: vehicledemand
+    build: vehicle-demand-service/
+    restart: always
+    network_mode: host
+    container_name: vehicledemand
+    depends_on:
+      - mongodb
+      - kafka
+    ports:
+      - "9090:9090"
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    hostname: zookeeper
+    restart: always
+  kafka:
+    image: wurstmeister/kafka
+    command: [start-kafka.sh]
+    ports:
+      - "9092:9092"
+    hostname: kafka
+    environment:
+      KAFKA_CREATE_TOPICS: "vehicle_slots:1:1,retailer_order:1:1,book_driver:1:1,accept_vehicle:1:1" # topic:partition:replicas
+      KAFKA_ADVERTISED_HOST_NAME: localhost # docker-machine ip
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_PORT: 9092
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - "zookeeper"
+    restart: always  
+  vehiclecompany:
+    image: vehiclecompany
+    build: vehicle-companey-backend
+    restart: always
+    network_mode: host
+    container_name: vehiclecompany
+    depends_on:
+      - mongodb
+    ports:
+      - "8095:8095"
+  signature-backend:
+    image: signature-backend
+    build: signature-backend/
+    restart: always
+    network_mode: host
+    container_name: signaturebackend
+    depends_on:
+      - mongodb
+    ports:
+      - "9095:9095"
+  admin:
+    image: admin
+    build: admin/
+    restart: always
+    network_mode: host
+    container_name: admin
+    depends_on:
+      - mongodb
+    ports:
+      - "9086:9086"
+  prometheus:
+    image: prom/prometheus
+    network_mode: host
+    restart: always
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    container_name: prom-cont
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-admin-api'
+      - '--web.listen-address=:9094'
+  graphana:
+    image: grafana/grafana
+    # ports:
+    #   - "3000:3000"
+    network_mode: host
+    restart: always
+    volumes:
+    - /grafana/provisioning/:/etc/grafana/provisioning/
+    container_name: graph-cont

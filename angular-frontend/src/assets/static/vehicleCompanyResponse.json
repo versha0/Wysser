@@ -1,0 +1,93 @@
+[
+    {
+        "id": "1",
+        "vehicleNumber": "KA103", 
+        "driverName": "Raj", 
+        "capacity": 500,
+        "costPerSlot": 100,
+        "vehicleStatus": "Good Condition",
+        "slot1" : "available",
+        "slot2" : "available",
+        "slot3" : "available",
+        "companyName": "ABC Deliveries",
+        "vehicleType": "truck"
+    },
+    {
+        "id": "2",
+        "vehicleNumber": "KA104", 
+        "driverName": "Raj", 
+        "capacity": 500,
+        "costPerSlot": 100,
+        "vehicleStatus": "Good Condition",
+        "slot1" : "available",
+        "slot2" : "unavailable",
+        "slot3" : "available",
+        "companyName": "ABC Deliveries",
+        "vehicleType": "truck"
+    },
+    {
+        "id": "3",
+        "vehicleNumber": "KA105", 
+        "driverName": "Raj", 
+        "capacity": 50,
+        "costPerSlot": 10,
+        "vehicleStatus": "Good Condition",
+        "slot1" : "unavailable",
+        "slot2" : "available",
+        "slot3" : "available",
+        "companyName": "XYZ Deliveries",
+        "vehicleType": "bike"
+    },
+    {
+        "id": "4",
+        "vehicleNumber": "KA108", 
+        "driverName": "Raj", 
+        "capacity": 50,
+        "costPerSlot": 10,
+        "vehicleStatus": "Good Condition",
+        "slot1" : "unavailable",
+        "slot2" : "unavailable",
+        "slot3" : "available",
+        "companyName": "XYZ Deliveries",
+        "vehicleType": "bike"
+    },
+    {
+        "id": "5",
+        "vehicleNumber": "KS105", 
+        "driverName": "Raj", 
+        "capacity": 50,
+        "costPerSlot": 10,
+        "vehicleStatus": "Good Condition",
+        "slot1" : "available",
+        "slot2" : "available",
+        "slot3" : "available",
+        "companyName": "ABC Deliveries",
+        "vehicleType": "bike"
+    },
+    {
+        "id": "6",
+        "vehicleNumber": "KA203", 
+        "driverName": "Raj", 
+        "capacity": 200,
+        "costPerSlot": 50,
+        "vehicleStatus": "Good Condition",
+        "slot1" : "available",
+        "slot2" : "available",
+        "slot3" : "available",
+        "companyName": "ABC Deliveries",
+        "vehicleType": "car"
+    },
+    {
+        "id": "7",
+        "vehicleNumber": "KA303", 
+        "driverName": "Raj", 
+        "capacity": 200,
+        "costPerSlot": 50,
+        "vehicleStatus": "Good Condition",
+        "slot1" : "unavailable",
+        "slot2" : "available",
+        "slot3" : "available",
+        "companyName": "XYZ Deliveries",
+        "vehicleType": "car"
+    }
+  ]

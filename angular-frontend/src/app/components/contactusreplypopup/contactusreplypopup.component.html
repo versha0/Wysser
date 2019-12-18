@@ -1,0 +1,14 @@
+<div class="card" style="width: 100%;">
+  <div class="card-body">
+    <h5 class="card-title">Reply</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Body</h6>
+    <form  >
+      <div class="form-group">
+<!--        <label for="formGroupExampleInput">Example label</label>-->
+        <input  type="text" class="form-control" id="formGroupExampleInput" placeholder="Your reply here....." [(ngModel)]="body1" [ngModelOptions]="{standalone: true}" >
+      </div>
+    </form>
+    <button class="card-link" (click)="sendreply()" >Send Reply</button>
+<!--    <a href="#" class="card-link">Another link</a>-->
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<app-adminfrontend></app-adminfrontend>
+<br>
+<br>
+<div class="table-responsive text-nowrap">
+  <table class="table" id="ordertable">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+
+
+      <th scope="col">Email Id</th>
+      <th scope="col">Shop Address</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of allRetailers ">
+      <td >{{data.id}}</td>
+      <td >{{data.fullName}}</td>
+
+
+      <td >{{data.email}}</td>
+      <td >{{data.address}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>

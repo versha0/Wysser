@@ -1,0 +1,82 @@
+<section>
+  <h6>new section</h6>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <section class="container">
+      <!-- <h6>container</h6> -->
+      <a class="navbar-brand" href="/" id="company">
+        <img id="logo" src="assets/logo1.png" alt="myLogo">
+      </a>
+      <!--toggle button after shrink-->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+              aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+     
+      <section class="collapse navbar-collapse text-center mx-center" id="navbarResponsive">
+        <h6>collapsible navbar</h6>
+        <ul class="navbar-nav ml-auto text-center">
+          <li class="nav-item active">
+            <a class="nav-link" href="/"><i class="fa fa-home"></i>Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item text-center">
+            <a class="nav-link" href="#subscription" routerLink="/pricing">
+              <i class="fa fa-rupee"></i>Plans</a>
+          </li>
+          <!-- <li class="nav-item text-center">
+            <a class="nav-link" data-toggle="modal" routerLink="/home/goal">Why Wysser</a>
+          </li> -->
+          <!-- <li class="nav-item text-center">
+            <a class="nav-link"  href="#members" >
+                <i class="fa fa-users" aria-hidden="true"></i>
+
+              Community</a>
+          </li> -->
+          <li class="nav-item">
+            <a routerLink ="/help" class="nav-link text-center" data-toggle="modal" href="#askmodal">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+
+              Help</a>
+          </li>
+        </ul>
+
+        <!-- <ul class="navbar-nav ml-auto">
+          <div *ngIf="checkLogin == null ">
+            <li class="nav-item">
+              <button class="btn btn-outline-danger my-2 my-sm-0" routerLink="/signup">Signup</button>
+            </li>
+          </div>
+        </ul> -->
+        <ul class="navbar-nav">
+          <div *ngIf="checkLogin != null ">
+            <li class="nav-item text-center">
+              <a  style="color:goldenrod;font-weight: bold; cursor: pointer;" class="nav-link" (click) = "getRelatedProfile()"><img style="width:30px;height:30px" src="assets/images/profile.png"/> Profile</a>
+            </li>
+          </div>
+          
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <div *ngIf="checkLogin == null ">
+              <div [hidden]="hideElement">
+            <li class="nav-item">
+              <button id="navb  utton" class="btn btn-outline-danger my-2 my-sm-0" routerLink="/login">Login/Signup</button>
+            </li>
+          </div>
+          </div>
+         
+          <div *ngIf="checkLogin != null ">
+            <li class="nav-item">
+              <button id="navbutton" class="btn btn-outline-danger my-2 my-sm-0" (click)="validateLogout()"
+                      routerLink="/home">Logout
+              </button>
+            </li>
+          </div>
+
+        </ul>
+      </section>
+    </section>
+  </nav>
+</section>
+<!--end of navigation bar-->
+

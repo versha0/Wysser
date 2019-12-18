@@ -1,0 +1,33 @@
+<app-adminfrontend></app-adminfrontend>
+
+<br>
+<br>
+<div class="table-responsive text-nowrap">
+  <table class="table" id="ordertable">
+    <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+
+      <th scope="col">Subject</th>
+      <th scope="col">Message</th>
+      <th scope="col">Reply</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of pendingtemp ">
+      <td >{{data.email}}</td>
+      <td >{{data.name}}</td>
+
+      <td >{{data.subject}}</td>
+      <td >{{data.message}}</td>
+<!--      <app-adminfrontend></app-adminfrontend>-->
+      <td ><button mat-stroked-button (click)="sendmail(data)">Reply</button></td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>

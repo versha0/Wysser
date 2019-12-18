@@ -1,0 +1,43 @@
+<div *ngIf="tokenVerified" class="container text-center">
+  <form id="registrationForm" class="container-fluid" onsubmit="return false" method="POST">
+    <h3 id="sign">Your account has been successfully verified!</h3>
+    <br/>
+    <h5>Set your password below</h5>
+    <div class="row">
+      <div class="col-md-4 offset-md-4 col-12">
+        <input #password type="password" placeholder="Password" required>
+      </div>
+      <div class="col-md-4 offset-md-4 col-12">
+        <input #confirmpassword type="password" placeholder="Confirm Password" required>
+      </div>
+
+      <div class="col-md-4 offset-md-4 col-12">
+        <button type="submit" class="btn" (click)='setPassword(password.value, confirmpassword.value)'>Create Account
+        </button>
+      </div>
+
+      <span *ngIf="passwordMismatch" class="alert alert-danger" role="alert">
+        Passwords do not match!
+      </span>
+      <div *ngIf="emptyField" class="alert alert-danger" role="alert">
+        Both fields need to filled.
+      </div>
+
+      <hr/>
+    </div>
+  </form>
+</div>
+<br/>
+<div *ngIf="invalidToken" class="text-center container">
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Invalid Token</h4>
+    <p>Please check your verification link.</p>
+  </div>
+</div>
+
+<div *ngIf="updateSuccessfull" class="text-center container">
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Password has been successfully updated</h4>
+    <p>Redirecting to login page....</p>
+  </div>
+</div>

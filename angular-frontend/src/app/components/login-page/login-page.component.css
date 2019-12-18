@@ -1,0 +1,42 @@
+
+.Text-container {
+  width: 40%;
+  height: 50%;
+ 
+  margin:auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  top: 40px;
+}
+.fullScreen{
+  min-height: 100vh;
+
+}
+.Text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.Text-container > * {
+  width: 100%;
+}
+
+.Text-container .deleteButton {
+  width: 25%;
+  margin: 0 auto;
+
+}
+
+
+.loginSignUpSeparator .textInSeparator {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+}

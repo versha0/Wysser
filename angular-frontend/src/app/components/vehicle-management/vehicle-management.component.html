@@ -1,0 +1,73 @@
+<!-- <mat-toolbar style="background-color: rgb(rgb(12, 11, 11), rgb(0, 5, 0), rgb(3, 3, 3));">
+    <mat-toolbar-row>
+        <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      </button>
+        <h1>Vehicle Manage</h1>
+        <span class="menu-spacer"></span>
+         <div>
+            <a mat-button [routerLink]="'/accounts'"> Accounts </a>
+            <a mat-button [routerLink]="'/create-account'"> Create Account </a>
+            <a mat-button [routerLink]="'/contacts'"> Contacts </a>
+            <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
+            <a mat-button [routerLink]="'/activities'"> Activities </a>
+            <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>
+
+        </div> -->
+<!-- </mat-toolbar-row> -->
+
+<!-- <mat-toolbar-row>
+        <span style="font-size: 12px;">SimpleCRM helps you easily manage your contacts</span>
+    </mat-toolbar-row> -->
+<!-- </mat-toolbar> -->
+
+
+<!--
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="'/manage-vehicle'"> manage-vehicle </a>
+            <a mat-list-item [routerLink]="'/editProfile'"> edit-profile </a>
+            <a mat-list-item [routerLink]="'/create-contact'"> Create Contact </a>
+            <a mat-list-item [routerLink]="'/settings'"> Settings </a>
+            <a mat-list-item [routerLink]="'/Logout'"> Logout </a>
+            <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+
+        </mat-nav-list>
+
+
+    </mat-sidenav>
+
+</mat-sidenav-container> -->
+<br>
+<br>
+<div class="Text-container">
+    <div class="alert alert-dark" role="alert">
+        <h3 style="text-align: center;"> {{cName}} </h3>
+    </div>
+</div>
+
+
+<mat-drawer-container class="example-container" style="height: 600px;" autosize>
+    <mat-drawer #drawer mode="side">
+        <mat-nav-list>
+            <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Home</a> -->
+            <!-- <a mat-list-item [routerLink]="'/profile'"> Profile </a> -->
+            <a mat-list-item [routerLink]="'/vehicle-management'"> Dash Board </a>
+            <a mat-list-item [routerLink]="'/manage-vehicle'"> Manage-vehicle </a>
+            <a mat-list-item [routerLink]="'/editVehicleCompanyProfile'"> Profile </a>
+            <a mat-list-item [routerLink]="'/driver-password'"> Driver Password </a>
+            <a mat-list-item [routerLink]="'/vehicle-history'"> History </a>
+        </mat-nav-list>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+      <img class="vehicle" src="../../assets/Vehicle.gif" alt="Menu">
+    </button>
+        <app-requests></app-requests>
+
+    </div>
+
+
+</mat-drawer-container>

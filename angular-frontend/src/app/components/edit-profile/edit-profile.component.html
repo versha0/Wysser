@@ -1,0 +1,148 @@
+<div class="container containerTop">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link" id="home-tab" href="#/user" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="vehicle-tab" href="#/retailerVehicleDemand" role="tab" aria-controls="vehicles"
+         aria-selected="false">Rent Vehicles</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="order-tab" href="#/addOrder" role="tab" aria-controls="orders" aria-selected="false">Add
+        Order</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" id="profile-tab" href="#/editProfile" role="tab" aria-controls="profile"
+         aria-selected="false">Edit Profile</a>
+    </li>
+
+  </ul>
+</div>
+<div class="Body">
+
+  <!-- upload image div -->
+  <div id="profile-image">
+
+    <br>
+
+    <label class="hoverable" for="fileInput">
+      <img [src]="picUrl ? picUrl : 'https://i.stack.imgur.com/gjwr8.png'">
+      <div class="hover-text">Choose file</div>
+      <div class="background"></div>
+    </label>
+    <br>
+
+
+    <!-- for getting profile image input -->
+    <input id="fileInput" type='file' (change)="onSelectPicture($event)">
+
+  </div>
+
+
+  <div class="Text-container">
+
+    <div *ngIf="isAlert" class="alert alert-danger" role="alert">
+      {{alertMessage}}
+    </div>
+
+    <div *ngIf="isSaved" class="alert alert-success" role="alert">
+       Your profile has been saved
+      </div>
+
+    <!-- <button class="deleteButton" *ngIf="picUrl" (click)="delete()">Change</button> -->
+
+
+    <!-- Prfile Form div -->
+
+    <mat-form-field>
+      <input #fullName matInput placeholder="Full Name" value="{{names}}" required>
+      <!-- <mat-placeholder class="placeholder">FullName</mat-placeholder> -->
+    </mat-form-field>
+    <!--
+<mat-form-field>
+  <input #email matInput placeholder="Email" required>
+</mat-form-field> -->
+
+    <mat-form-field>
+      <input #phone matInput pattern="^[0-9]{10}$" placeholder="Phone" value="{{phones}}" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #address matInput placeholder="Address" value="{{addresss}}"  required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #retailerCompanyName matInput placeholder="Company Name" value="{{companys}}"  required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #gstIn matInput placeholder="GST IN" value="{{gsts}}" required>
+    </mat-form-field>
+
+    <!--Dropdown for document-->
+
+    <mat-form-field>
+      <mat-select #docName value="{{docNames}}" placeholder="Documentation" required>
+        <mat-option value="AdharCard">AdharCard</mat-option>
+        <mat-option value="DrivingLicence">DrivingLicence</mat-option>
+        <mat-option value="PassPort">PassPort</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <!-- upload and preview docs -->
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+
+
+          <!-- for getting Document image input -->
+          <div class="form-group">
+            <input type="file" name="image" (change)="onSelectDoc($event)"/>
+          </div>
+
+
+          <!-- <div *ngIf="fileUploadProgress">
+  Upload progress: {{ fileUploadProgress }}
+</div> -->
+
+
+          <!-- Uncomment Below div to show preview of uploaded docs -->
+
+          <!-- <div class="image-preview mb-3" *ngIf="previewUrl">
+  <img [src]="previewUrl" height="300" />
+</div> -->
+
+
+          <!-- <div class="mb-3" *ngIf="uploadedFilePath">
+  {{uploadedFilePath}}
+</div> -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Button-->
+
+    <!-- <div id="terms text-center">
+      <mat-checkbox #c>I Agree with <a routerLink="/terms">terms and conditions</a></mat-checkbox>
+    </div> -->
+
+
+    
+        <p #c> By clicking “Create Account”, you agree to our <a routerLink="/terms" target="_blank">Terms and Conditions</a> and  <a routerLink="/terms" target="_blank">Privacy Policy </a>and agree to abide by them</p>
+   
+<div class="row ">
+    <button class="col-sm-6 btn btn-outline-danger "
+            (click)="save(fullName.value,phone.value,address.value,retailerCompanyName.value,gstIn.value,docName.value,c.checked)"
+           ><b> Save </b>
+    </button>
+    <br>
+    <button class="col-sm-6 btn btn-outline-danger " routerLink="/viewProfile"><b> Cancel </b>
+    </button>
+</div>
+  </div>
+
+
+</div>

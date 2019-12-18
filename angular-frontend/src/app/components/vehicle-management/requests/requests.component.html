@@ -1,0 +1,61 @@
+<h2> Request Notifications... </h2>
+
+
+<div class="request">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th class="text-center">ID</th>
+                <th class="text-center">Slot</th>
+                <th class="text-center">Company Name</th>
+                <th class="text-center">Vehicle Number</th>
+                <th class="text-center">Driver Name</th>
+                <th class="text-center">Vehicle Type</th>
+                <th class="text-center">Capacity(lit)</th>
+                <th class="text-center">Cost Per Slot(Rs)</th>
+                <th class="text-center">Vehicle Status</th>
+                <th class="text-center">Retailer ID</th>
+
+                <th class="text-center">Accept/Reject</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vehicle of Vehicles">
+                <td>{{ vehicle.id }}</td>
+
+                <td>{{vehicle.slot | timeSlot}}</td>
+                <td>{{vehicle.companyName}}</td>
+
+                <td>{{ vehicle.vehicleNumber }}</td>
+                <td>{{ vehicle.driverName }}</td>
+                <td>{{ vehicle.vehicleType }}</td>
+                <td>{{ vehicle.capacity }}</td>
+                <td>{{ vehicle.costPerSlot }}</td>
+                <td>{{ vehicle.vehicleStatus }}</td>
+                <td>{{ vehicle.retailerId }}</td>
+
+                <td>
+
+                    <!-- <md-button class="btn1" ng-click="rejectOffer();"> Accept </md-button>
+
+                    <md-button class="btn1" ng-click="rejectOffer();"> Reject </md-button> -->
+
+                    <button mat-stroked-button (click)="AcceptRequest(vehicle)" style="color:green">Accept</button>
+
+                    <button mat-stroked-button (click)="RejectRequest(vehicle)" style="color:red">Reject</button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div *ngIf="isAccepted" class="alert alert-success" role="alert">
+        {{updateMessage}}
+    </div>
+    <div *ngIf="isRejected" class="alert alert-danger" role="alert">
+        {{updateMessage}}
+    </div>
+
+</div>

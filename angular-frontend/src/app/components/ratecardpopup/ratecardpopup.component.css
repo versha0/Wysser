@@ -1,0 +1,18 @@
+/* #ratecard {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#ratecard td, #ratecard th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#ratecard tr:nth-child(even){background-color: #f2f2f2;}
+#ratecard th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: gray;
+  color: white;
+} */

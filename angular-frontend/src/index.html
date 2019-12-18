@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Wysser</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!--linking cdn bootsrap 4.3.1-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id=ARi7AQHJ3-IL3crSrySBxZxHoKOJhqyCOzsrjasLq-aeSa4WEdi6EuyiX2LoJfwgMThrS-JZqM4YzfbB&currency=INR"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!--font awesome for icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--linking google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lexend+Zetta|Orbitron&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt" crossorigin="anonymous">
+    <!-- scroll animation script -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/js/bootstrap.min.js"
+          integrity="sha384-3qaqj0lc6sV/qpzrc1N5DC6i1VRn/HyX4qdPaiEFbn54VjQBEU341pvjz7Dv3n6P"
+          crossorigin="anonymous"></script> -->
+    <script>
+
+        
+        $(window).on("load resize scroll", function() {
+            $(".bg-img").each(function() {
+                var windowTop = $(window).scrollTop();
+                var elementTop = $(this).offset().top;
+                var leftPosition = windowTop - elementTop;
+                console.log(leftPosition);
+                if (leftPosition < 589) {
+                    $(this)
+                        .find(".deliveryboy-icon")
+                        .css({
+                            left: leftPosition
+                        });
+                }
+
+            });
+        });
+        // navbar change on scroll
+        $(window).scroll(function() {
+            $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+        });
+
+
+        //smooth scrolling
+        $(document).ready(function() {
+            // Add smooth scrolling to all links
+            $("a").on('click', function(event) {
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+                    // Store hash
+                    var hash = this.hash;
+                    // Using jQuerys animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 800, function() {
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+        });
+
+
+
+
+
+
+
+        // ..................random Id generator for driver password......................
+
+        (function() {
+            function IDGenerator() {
+
+                this.length = 8;
+                this.timestamp = +new Date;
+
+                var _getRandomInt = function(min, max) {
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                }
+
+                this.generate = function() {
+                    var ts = this.timestamp.toString();
+                    var parts = ts.split("").reverse();
+                    var id = "";
+
+                    for (var i = 0; i < this.length; ++i) {
+                        var index = _getRandomInt(0, parts.length - 1);
+                        id += parts[index];
+                    }
+
+                    return id;
+                }
+
+
+            }
+
+
+            document.addEventListener("DOMContentLoaded", function() {
+                var btn = document.querySelector("#generate"),
+                    output = document.querySelector("#output");
+
+                btn.addEventListener("click", function() {
+                    var generator = new IDGenerator();
+                    output.innerHTML = generator.generate();
+
+                }, false);
+
+            });
+
+
+        })();
+
+
+    
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+
+<body>
+
+    <div id="loader" class="center">
+            <img class="wysser" src="../../assets/logo1.png"/>
+            <img class="zio" src="../../assets/images/gps.png"/>
+    </div>
+    <!-- navigation bar -->
+    <!-- -------------------------------------------------------------------------- -->
+    <app-root></app-root>
+    <!-- ------------------------------------------------------------------------  -->
+    <!--footer-->
+    <!--end of footer-->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script> 
+    //loader
+        document.onreadystatechange = function() { 
+            if (document.readyState !== "complete") { 
+                document.querySelector( 
+                  "body").style.visibility = "hidden"; 
+                document.querySelector( 
+                  "#loader").style.visibility = "visible"; 
+            } else { 
+                document.querySelector( 
+                  "#loader").style.display = "none"; 
+                document.querySelector( 
+                  "body").style.visibility = "visible"; 
+            } 
+        }; 
+    </script> 
+</body>
+
+</html>

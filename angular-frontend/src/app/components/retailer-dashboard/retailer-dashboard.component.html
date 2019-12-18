@@ -1,0 +1,130 @@
+<!-- <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-4 text-center">Dashboard</h1>
+        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+</div>       -->
+<div class="dashboard">
+ 
+  <div class="container">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="home-tab" routerLink="../user" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="vehicle-tab" routerLink="../retailerVehicleDemand" role="tab" aria-controls="vehicles"
+               aria-selected="false">Rent Vehicles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="order-tab" routerLink="../addOrder" role="tab" aria-controls="orders"
+               aria-selected="false">Add Order</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="viewProfile-tab" routerLink="../viewProfile" role="tab" aria-controls="details"
+               aria-selected="false">Profile</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" id="viewPendingVehicleRequest" routerLink="../viewPendingVehicleRequest" role="tab" aria-controls="details"
+                 aria-selected="false">Pending Request</a>
+          </li>
+        </ul>
+    <!-- <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+    </div>    -->
+  </div>
+  <div class="container alert " data-aos="fade-left"  role="alert" *ngIf="retailerObj.fullName != ''">
+      <h3> <mat-list-item>Logged In As: <span style="color:goldenrod">{{retailerObj.fullName}}</span></mat-list-item></h3>
+    </div>
+  <div class="container">
+    <div class="row">
+      <div data-aos="flip-down" data-aos-duration="1000" class="col-sm col-12">
+        <div class="card border-primary mb-3">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Orders Completed</h5>
+            <p class="card-text">{{deliveredOrders}}</p>
+          </div>
+        </div>
+      </div>
+      <div data-aos="flip-down" data-aos-duration="1500"class="col-sm col-12">
+        <div class="card border-danger mb-3">
+          <div class="card-body">
+            <h5 class="card-title text-danger">Pending Orders</h5>
+            <p class="card-text">{{pendingOrders}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- <div data-aos="flip-down" data-aos-duration="2000" class="col-sm col-12">
+        <div class="card border-success mb-3">
+          <div class="card-body">
+            <h5 class="card-title text-success">Total Delivery Cost</h5>
+            <p class="card-text">Rs 632</p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div data-aos="fade-right" data-aos-duration="1500"class="col-sm-6 col-12">
+        <div class="card">
+          <div class="card-header">
+            Order History
+          </div>
+          <div class="chart-wrapper">
+            <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                    [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins">
+            </canvas>
+          </div>
+        </div>
+      </div>
+      <div data-aos="fade-down" data-aos-duration="1500"class="col-sm-6 col-12">
+        <div class="card">
+          <div class="card-header">
+            Slot Statistics
+          </div>
+          <div class="chart-wrapper">
+            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+            </canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="container">
+   <div class="row">
+     <div data-aos="fade-left" data-aos-duration="2000" class="col-sm-6 col-12">
+       <div class="card">
+         <div class="card-header">Confirmed Vehicles</div>
+         <table class="table">
+           <tr>
+             <th>Vehicle Number</th>
+             <th>Capacity</th>
+             <th>Vehicle Type</th>
+             <th>Timeslot</th>
+             <th>Leasing Company</th>
+           </tr>
+           <tr *ngFor="let vehicle of rentedVehicles">
+             <td>{{vehicle.vehicleNumber}}</td>
+             <td>{{vehicle.capacity}}</td>
+             <td>{{vehicle.vehicleType}}</td>
+             <td>{{vehicle.slot}}</td>
+             <td>{{vehicle.companyName}}</td>
+           </tr>
+         </table>
+       </div>
+     </div>
+
+   
+      <div data-aos="fade-right" data-aos-duration="2000" class="col-sm-6 col-12">
+        <div class="card map">
+          <div class="card-header">Current Vehicle Routes</div>
+            <app-mapcomponent></app-mapcomponent>
+        </div>
+      </div>
+ 
+    </div>
+</div>
+</div>

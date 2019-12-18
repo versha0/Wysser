@@ -1,0 +1,72 @@
+<div class="container containerTop">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link" id="home-tab" routerLink="../user" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="vehicle-tab" routerLink="../retailerVehicleDemand" role="tab" aria-controls="vehicles"
+             aria-selected="false">Rent Vehicles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="order-tab" routerLink="../addOrder" role="tab" aria-controls="orders"
+             aria-selected="false">Add Order</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" id="viewProfile-tab" routerLink="../viewProfile" role="tab" aria-controls="details"
+             aria-selected="false">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="viewPendingVehicleRequest" routerLink="../viewPendingVehicleRequest" role="tab" aria-controls="details"
+               aria-selected="false">Pending Request</a>
+        </li>
+      
+  </ul>
+</div>
+<br/>
+
+<div data-aos="zoom-out" *ngIf="check != '' ">
+
+
+  <h2 style="text-align: center;">Company : {{companyName}}</h2>
+
+
+  <div data-aos="zoom-out-down" id="profile-image">
+
+    <br>
+
+    <label class="hoverable" for="fileInput">
+      <img [src]="picurl ? picurl : 'https://i.stack.imgur.com/gjwr8.png'">
+    </label>
+    <br>
+  </div>
+
+
+  <div class="Text-container">
+
+
+    <mat-list-item>Name : {{retailerObj.fullName}}</mat-list-item>
+    <br>
+    <mat-list-item>Email : {{retailerObj.email}}</mat-list-item>
+    <br>
+    <mat-list-item>Contact Detail : {{retailerObj.phoneNo}}</mat-list-item>
+    <br>
+    <div class="row ">
+
+      <button class="col-sm-6 btn btn-outline-danger " routerLink="/editProfile"> Edit</button>
+      <br>
+      <button class="col-sm-6 btn btn-outline-danger " (click)="deleteAccount()" >Delete Account</button>
+    </div>
+  </div>
+
+</div>
+
+
+<div *ngIf="check == '' ">
+  <div class="Text-container">
+    <mat-list-item>Please Update Your Profile</mat-list-item>
+  </div>
+  <br>
+  <div class="text-center">
+    <button class="btn btn-outline-danger" routerLink="/editProfile"> Edit</button>
+  </div>
+</div>

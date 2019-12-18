@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "vehicleNumber": "22",
+    "slot": "1",
+    "depotAddress": "marathahalli",
+    "depotLatitude": 12.95467,
+    "depotLongitude": 77.70752,
+    "wholesalerId": 23,
+    "routes": "[{\"customerAddress\":\"jayantinagara%20banglore\",\"wholesalerId\":231,\"orderId\":78,\"latitude\":13.02689,\"orderStatus\":\"pending\",\"id\":37,\"slot\":\"1\",\"deliveryDate\":\"26-11-2019\",\"orderVolume\":\"4\",\"longitude\":77.66557},{\"customerAddress\":\"koramangala\",\"wholesalerId\":231,\"orderId\":76,\"latitude\":12.92005,\"orderStatus\":\"pending\",\"id\":35,\"slot\":\"null\",\"deliveryDate\":\"26-11-2019\",\"orderVolume\":\"40\",\"longitude\":77.62543},{\"customerAddress\":\"yemlur%20bangalore\",\"wholesalerId\":23,\"orderId\":344,\"latitude\":12.94857,\"orderStatus\":\"pending\",\"id\":43,\"slot\":\"1\",\"deliveryDate\":\"null\",\"orderVolume\":\"5\",\"longitude\":77.67493}]"
+  }
+]

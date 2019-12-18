@@ -1,0 +1,46 @@
+[
+  {
+    "id": 23,
+    "customerName": "Demo",
+    "customerAddress": "ABC123",
+    "customerPhoneNumber": "1234567890",
+    "deliveryDate": "2019-12-04",
+    "slotNumber": "slot2",
+    "orderVolume": 5,
+    "orderStatus": "delivered",
+    "retailerEmail": "demo@pi.in"
+  },
+  {
+    "id": 13,
+    "customerName": "Demo1",
+    "customerAddress": "1ABC123",
+    "customerPhoneNumber": "1234567890",
+    "deliveryDate": "2019-12-04",
+    "slotNumber": "slot3",
+    "orderVolume": 10,
+    "orderStatus": "delivered",
+    "retailerEmail": "demo@pi.in"
+  },
+  {
+    "id": 43,
+    "customerName": "2Demo",
+    "customerAddress": "vABC123",
+    "customerPhoneNumber": "1234567890",
+    "deliveryDate": "2019-12-05",
+    "slotNumber": "slot1",
+    "orderVolume": 20,
+    "orderStatus": "delivered",
+    "retailerEmail": "demo@pi.in"
+  },
+  {
+    "id": 25,
+    "customerName": "Demo2",
+    "customerAddress": "4ABC123",
+    "customerPhoneNumber": "1234567890",
+    "deliveryDate": "2019-12-05",
+    "slotNumber": "slot2",
+    "orderVolume": 10,
+    "orderStatus": "delivered",
+    "retailerEmail": "demo@pi.in"
+  }
+]

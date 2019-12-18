@@ -1,0 +1,243 @@
+<div class="containerTop container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="home-tab"
+        routerLink="../user"
+        role="tab"
+        aria-controls="dashboard"
+        aria-selected="true"
+        >Dashboard</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="vehicle-tab"
+        routerLink="../retailerVehicleDemand"
+        role="tab"
+        aria-controls="vehicles"
+        aria-selected="false"
+        >Rent Vehicles</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        id="order-tab"
+        routerLink="../addOrder"
+        role="tab"
+        aria-controls="orders"
+        aria-selected="false"
+        >Add Order</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="viewProfile-tab"
+        routerLink="../viewProfile"
+        role="tab"
+        aria-controls="details"
+        aria-selected="false"
+        >Profile</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        id="viewPendingVehicleRequest"
+        routerLink="../viewPendingVehicleRequest"
+        role="tab"
+        aria-controls="details"
+        aria-selected="false"
+        >Pending Request</a
+      >
+    </li>
+  </ul>
+</div>
+<br />
+<div class="text-center container">
+  <div *ngIf="success">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Order was successfully added!</h4>
+          <p>
+            Your consignment with OrderId: {{ savedOrder.id }} has been registered and
+            will be picked up for delivery on {{ savedOrder.deliveryDate }}
+          </p>
+          <hr />
+          <p class="mb-0">You can continue adding more orders below.</p>
+        </div>
+      </div>
+      <br />
+    </div>
+    <hr />
+  </div>
+
+  <form
+    id="orderForm"
+    class="container-fluid"
+    onsubmit="return false"
+    method="POST"
+  >
+    <h2 id="sign">Enter your consignment details</h2>
+    <br />
+    <div class="row">
+      <div class="col-md-3 offset-md-3 col-12">
+        <!-- <label for="customerName"><b>Customer Name</b></label> -->
+        <input
+          #customerName
+          type="text"
+          placeholder="Customer Name"
+          name="customerName"
+          required
+        />
+      </div>
+      <div class="col-md-3 col-12">
+        <!-- <label for="customerNumber"><b>Mobile Number</b></label> -->
+        <input
+          #customerNumber
+          type="text"
+          pattern="[789][0-9]{9}"
+          placeholder="Customer Mobile Number"
+          name="customerNumber"
+          required
+        />
+      </div>
+      <div class="col-md-3 offset-md-3 col-12">
+        <!-- <label for="customerAddress"><b>Delivery Address</b></label> -->
+        <!-- <input
+          #customerAddress
+          type="text"
+          placeholder="Delivery Address"
+          name="customerAddress"
+          required
+        /> -->
+        <select
+          class="form-control"
+          #customerAddress
+        >
+          <option value="Adugodi">Adugodi</option>
+          <option value="Marathahalli">Marathahalli</option>
+          <option value="Mahadevapura">Mahadevapura</option>
+          <option value="Whitefield">Whitefield</option>
+          <option value="Indiranagar">Indiranagar</option>
+          <option value="Marathahalli">Marathahalli</option>
+          <option value="Koramangala">Koramangala</option>
+          <option value="Forum Mall">Forum Mall</option>
+          <option value="VV Puram" >VV Puram</option>
+          <option value="BTM Layout">BTM Layout</option>
+          <option value="Kadubeeshanahalli">Kadubeeshanahalli</option>
+          <option value="Bellandur">Bellandur</option>
+          <option value="Ejipura">Ejipura</option>Ejipura</select>
+      </div>
+      <div class="col-md-3 col-12">
+        <!-- <div class="row justify-content-center" id="volume">
+            <label for="orderVolume">Order Volume</label>
+        </div>         -->
+        <!-- <input type = "radio" name="orderVolume" value="5" (click) = "changeSlotValue(5); orderVolume = 5" required checked>5L
+        <input type = "radio" name="orderVolume" (click) = "changeSlotValue(10); orderVolume = 10" value="10">10L
+        <input type = "radio" name="orderVolume" (click) = "changeSlotValue(20); orderVolume = 20" value="20">20L
+        <input type = "radio" name="orderVolume" (click) = "changeSlotValue(50); orderVolume = 50" value="50">50L -->
+        <select
+          class="form-control"
+          #orderVolume
+          (change)="changeSlotValue($event.target.value)"
+        >
+          <option value="5" (click)="changeSlotValue(5)">5L</option>
+          <option value="10" (click)="changeSlotValue(10)">10L</option>
+          <option value="20">20L</option>
+          <option value="50" (click)="changeSlotValue(50)">50L</option>
+        </select>
+      </div>
+      <!-- <div class="col-md-6 offset-md-3 col-12">
+        
+        <input #deliveryDate (focusout)="checkSlotsOnDate(deliveryDate.value)" type="date" [min]="today"
+               name="deliveryDate" required>
+      </div> -->
+      <div class="col-10 offset-1">
+        <br/>
+        <!-- <label for="slotNumber"><b>Delivery Slot</b></label><br/> -->
+        <div class="row">
+          <div class="col"></div>
+          <div class="col-sm col-12">
+            <button
+              type="button"
+              [disabled]="!slotValid['slot1']"
+              (click)="
+                setSlot('slot1'); slot1 = true; slot2 = false; slot3 = false
+              "
+              class="btn-outline-danger"
+              [class.btn-outline-danger]="slotValid['slot1']"
+              [class.btn-danger]="!slotValid['slot1']"
+              [class.selected]="slot1"
+            >
+              <p>
+                11:00AM to 02:00PM <br />
+                {{ slotJson["timeslot1"]["volume"] | remainingVolume }}
+              </p>
+            </button>
+          </div>
+          <div class="col-sm col-12">
+            <button
+              type="button"
+              [disabled]="!slotValid['slot2']"
+              (click)="
+                setSlot('slot2'); slot1 = false; slot2 = true; slot3 = false
+              "
+              class="btn-outline-danger"
+              [class.btn-outline-danger]="slotValid['slot2']"
+              [class.btn-danger]="!slotValid['slot2']"
+              [class.selected]="slot2"
+            >
+              <p>
+                03:00PM to 06:00PM <br />
+                {{ slotJson["timeslot2"]["volume"] | remainingVolume }}
+              </p>
+            </button>
+          </div>
+          <div class="col-sm col-12">
+            <button
+              type="button"
+              [disabled]="!slotValid['slot3']"
+              (click)="
+                setSlot('slot3'); slot1 = false; slot2 = false; slot3 = true
+              "
+              class="btn-outline-danger"
+              [class.btn-outline-danger]="slotValid['slot3']"
+              [class.btn-danger]="!slotValid['slot3']"
+              [class.selected]="slot3"
+            >
+              <p>
+                07:00PM to 10:00PM <br />
+                {{ slotJson["timeslot3"]["volume"] | remainingVolume }}
+              </p>
+            </button>
+          </div>
+          <div class="col"></div>
+        </div>
+      </div>
+      <hr />
+      <div class="col-4 offset-4">
+        <br />
+        <button
+          type="submit"
+          class="btn btn-outline-danger"
+          (click)="
+            submitOrder(
+              customerName.value,
+              customerNumber.value,
+              customerAddress.value,
+              orderVolume.value
+            )
+          "
+        >
+          Add Order
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,95 @@
+<div class="row">
+
+    <div class="col-sm-3">
+
+        <mat-drawer-container style="background-color: white;" class="example-container" autosize>
+
+            <mat-drawer #drawer mode="side">
+                <mat-nav-list>
+                    <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Home</a> -->
+                    <!-- <a mat-list-item [routerLink]="'/profile'"> Profile </a> -->
+                    <a mat-list-item [routerLink]="'/vehicle-management'"> Dash Board </a>
+                    <a mat-list-item [routerLink]="'/manage-vehicle'"> Manage-vehicle </a>
+                    <a mat-list-item [routerLink]="'/editVehicleCompanyProfile'"> Profile </a>
+                    <a mat-list-item [routerLink]="'/driver-password'"> Driver Password </a>
+                    <a mat-list-item [routerLink]="'/vehicle-history'"> History </a>
+                </mat-nav-list>
+            </mat-drawer>
+
+            <div class="example-sidenav-content">
+                <button type="button" mat-button (click)="drawer.toggle()">
+          <img class="vehicle" src="../../assets/Vehicle.gif" alt="Menu">
+        </button>
+                <!-- <app-requests></app-requests> -->
+
+            </div>
+
+
+        </mat-drawer-container>
+
+
+    </div>
+
+    <div class="col-sm-9">
+        <!-- ......................................................................... -->
+
+        <div class="Body">
+            <div class="Text-container">
+                <!-- <button class="deleteButton" *ngIf="picUrl" (click)="delete()">Change</button> -->
+
+
+                <!-- Prfile Form div -->
+
+                <mat-form-field>
+                    <input #compnayName matInput placeholder="Company Name" type="text" value="{{cName}}" required>
+                    <!-- <mat-placeholder class="placeholder">FullName</mat-placeholder> -->
+                </mat-form-field>
+                <!--
+      <mat-form-field>
+        <input #email matInput placeholder="Email" required>
+      </mat-form-field> -->
+
+                <mat-form-field>
+                    <input #contact matInput placeholder="Contect Number" type="number" value="{{cNumber}}" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input #address matInput placeholder="Companey Address" value="{{cAddress}}" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input #gstIn matInput placeholder="GST IN" type="number" value="{{cGst}}" required>
+                </mat-form-field>
+
+                <!-- Save Button-->
+                <br>
+                <div class="checkbox">
+                    <p #c> By clicking “Create Account”, you agree to our <a routerLink="/terms" target="_blank">Terms and
+              Conditions</a> and <a routerLink="/terms" target="_blank">Privacy Policy </a>and agree to abide by them
+                    </p>
+                </div>
+                <br>
+                <div class="row ">
+                    <button class="col-sm-5 btn btn-outline-danger " (click)="save(compnayName.value,contact.value,address.value,gstIn.value,c.checked)"><b> Save </b>
+          </button>
+                    <br>
+                    <div class="col-sm-2"></div>
+                    <button class="col-sm-5 btn btn-outline-danger " routerLink="/vehicle-management"><b> Cancel </b>
+          </button>
+                </div>
+                <br>
+                <div class="row ">
+                    <button class="col-sm-12 btn btn-outline-danger " (click)="deleteAccount()"><b> Delete My Account </b>
+          </button>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- ......................................................................... -->
+
+    </div>
+
+
+</div>

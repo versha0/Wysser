@@ -1,0 +1,74 @@
+<br/>
+<div *ngIf="(flagforallcompleted==false); then thenBlock else elseBlock"></div>
+
+<ng-template #thenBlock>
+<br>
+<h2 id="mainhead">Delivery Dashboard</h2>
+<br>
+<div class="card bg-light" id="maincard">
+  <div class="card-body text-center">
+    <button type="button" class="btn btn-outline-danger" id="cancelbutton" (click)="openDialogue()">Cancel Delivery</button>
+    <br>
+    <p class="card-text"> Order Id:{{temp[1].orderId}}</p>
+<!--    <p class="card-text"> Customer Name:{{temp[1].customerName}}</p>-->
+    <p class="card-text"> Customer Address:{{temp[1].customerAddress}}</p>
+<!--    <p class="card-text"> Customer Phone No.:{{temp[1].customerPhoneNumber}}</p>-->
+    <div class="card bg-light" id="detailscard">
+      <div class="card-body text-center">
+        <p class="card-text"  >Current Location:{{temp[0].customerAddress}}</p >
+        <p class="card-text"  >Next Stop:{{temp[1].customerAddress}}</p >
+      </div>
+    </div>
+    <br>
+    <div class="btn-group btn-group-lg" id="buttongrp">
+      <button type="button" class="btn btn-primary" (click)="navigate()">Navigate</button>
+      <button type="button" class="btn btn-primary" (click)="signature()">Delivered</button>
+      <button type="button" class="btn btn-primary" (click)="delayDelivery()" >Delay Delivery</button>
+    </div>
+  </div>
+</div>
+<br>
+<h3 id="secondhead">
+  Upcoming Stops
+</h3>
+<br>
+<div class="table-responsive text-nowrap">
+  <table class="table" id="ordertable">
+    <thead>
+    <tr>
+      <th scope="col">Order Id</th>
+<!--      <th scope="col">Customer Name</th>-->
+      <th scope="col">Address</th>
+      <th scope="col">Order Volume</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- <tr *ngFor="let data of orderRoutes "> -->
+        <tr *ngFor="let data of route ">
+      <td *ngIf="data.id !=temp[0].id && isPending(data)">{{data.orderId}}</td>
+<!--      <td *ngIf="data.id !=temp[0].id">{{data.customerName}}</td>-->
+      <td *ngIf="data.id !=temp[0].id && isPending(data)">{{data.customerAddress}}</td>
+<!--      <td *ngIf="data.orderStatus=='pending' && data.id !=temp[0].id">{{data.orderVolume}}</td>-->
+            <td *ngIf="data.id !=temp[0].id && isPending(data)">{{data.orderVolume}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</ng-template>
+<ng-template #elseBlock>
+  <br>
+  <br>
+
+  <div class="card" id="myclass" >
+    <div class="card-header">
+      <h4>Current Status</h4>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">You have no new deliveries!</h5>
+      <p class="card-text">Enjoy your life!</p>
+
+
+      <!--      <a href="#" class="btn btn-primary">Go somewhere</a>-->
+    </div>
+  </div>
+  </ng-template>

@@ -1,0 +1,50 @@
+.grid3img {
+
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  
+  #grid {
+    text-decoration: none;
+    display: flex;
+    /* box-shadow: 10px solid black; */
+  }
+  h6{
+    visibility: hidden;
+  }
+  h4 {
+    color: goldenrod;
+  }
+
+  .carousel-indicators li {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 1px;
+    text-indent: -999px;
+    cursor: pointer;
+    background-color: #000 \9;
+    background-color: rgba(255, 255, 255, 100);
+    border: 1px solid #000000;
+    border-radius: 10px;
+  }
+  
+  .carousel-indicators .active {
+    width: 12px;
+    height: 12px;
+    margin: 0;
+    background-color:gray ;
+    border: 1px solid white;
+    /* background-color: goldenrod; */
+ }
+ .carousel-indicators {
+  bottom: -50px;
+}
+.role{
+  background: darkslategray;
+  color:white;
+
+}

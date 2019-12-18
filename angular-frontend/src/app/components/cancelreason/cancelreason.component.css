@@ -1,0 +1,25 @@
+.card1{
+  align-content: center;
+  min-height: 200px;
+  min-width: 200px;
+  height:300px;
+  width:400px;
+  margin: auto;
+}
+
+
+
+h3{
+  text-align: center;
+  /* padding-top: 10px; */
+}
+.submitbutton{
+  align-content: center;
+  text-align: center;
+  margin: 0 auto !important;
+  display: block;
+}
+.drop1{
+  margin: 0 auto !important;
+  display: block;
+}
